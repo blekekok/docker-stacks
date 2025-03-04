@@ -1,0 +1,12 @@
+services:
+    filebrowser:
+        volumes:
+            - ${ROOT_DIRECTORY}:/srv
+            - ${DOCKER_DIRECTORY}/filebrowser/filebrowser.db:/database/filebrowser.db
+            - ${DOCKER_DIRECTORY}/settings.json:/config/settings.json
+        environment:
+            - PUID=$(id -u)
+            - PGID=$(id -g)
+        ports:
+            - 8080:80
+        image: filebrowser/filebrowser:s6
