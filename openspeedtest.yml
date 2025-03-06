@@ -5,8 +5,8 @@ services:
      restart: unless-stopped
      environment:
        - ENABLE_LETSENCRYPT=True
-       - DOMAIN_NAME=ost.thebernas.com
-       - USER_EMAIL=jtbernas@gmail.com
+       - DOMAIN_NAME=${DOMAIN_NAME}
+       - USER_EMAIL=${USER_EMAIL}
      ports:
         - '5000:3000'
         - '5443:3001'
