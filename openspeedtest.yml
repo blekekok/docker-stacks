@@ -1,0 +1,12 @@
+services:
+  openspeedtest:
+     image: openspeedtest/latest
+     container_name: openspeedtest
+     restart: unless-stopped
+     environment:
+       - ENABLE_LETSENCRYPT=True
+       - DOMAIN_NAME=ost.thebernas.com
+       - USER_EMAIL=jtbernas@gmail.com
+     ports:
+        - '5000:3000'
+        - '5443:3001'
