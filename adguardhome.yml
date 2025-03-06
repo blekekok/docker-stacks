@@ -1,0 +1,19 @@
+services:
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_DIRECTORY}/adguardhome/work:/opt/adguardhome/work
+      - ${DOCKER_DIRECTORY}/adguardhome/conf:/opt/adguardhome/conf
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 6050:3000/tcp
+      - 6000:80/tcp
+      - 6443:443/tcp
+      - 6443:443/udp
+      - 853:853/tcp
+      - 853:853/udp
+      - 784:784/udp
+      - 8853:8853/udp
