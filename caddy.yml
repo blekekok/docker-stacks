@@ -3,7 +3,6 @@ services:
     image: custom-caddy:latest
     container_name: caddy
     restart: unless-stopped
-    command: ["caddy", "run", "--watch", "--config", "/etc/caddy/Caddyfile"]
     cap_add:
       - NET_ADMIN
     ports:
