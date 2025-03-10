@@ -3,12 +3,13 @@ services:
         image: filebrowser/filebrowser:s6
         container_name: filebrowser
         restart: unless-stopped
+        privileged: true
         volumes:
             - ${ROOT_DIRECTORY}:/srv
             - ${DOCKER_DIRECTORY}/filebrowser/filebrowser.db:/database/filebrowser.db
             - ${DOCKER_DIRECTORY}/settings.json:/config/settings.json
         environment:
-            - PUID=$(id -u)
-            - PGID=$(id -g)
+            - PUID=0
+            - PGID=0
         ports:
             - 8080:80
