@@ -29,7 +29,7 @@ services:
 #     - "443:443"  # If https is enabled, cancel the comment.
     volumes:
       - ${DOCKER_DIRECTORY}/seafile/seafile-storage:/shared   # Required, specifies the path to Seafile data persistent store.
-      - ${STORATE_DIRECTORY}/seafile/seafile-data:/shared/seafile/seafile-data
+      - ${STORAGE_DIRECTORY}/seafile/seafile-data:/shared/seafile/seafile-data
     environment:
       - DB_HOST=db
       - DB_ROOT_PASSWD=${DB_PASSWORD}  # Required, the value should be root's password of MySQL service.
