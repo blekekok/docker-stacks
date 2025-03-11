@@ -1,0 +1,27 @@
+services:
+  ollama:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities:
+                - gpu
+    volumes:
+      - ${DOCKER_DIRECTORY}/ollama:/root/.ollama
+    ports:
+      - 11434:11434
+    container_name: ollama
+    image: ollama/ollama
+    restart: always
+
+networks:
+  dockge_default:
+    external: true
+  openwebui_default:
+    external: true
+  searxng_searxng:
+    external: true
+  tika_default:
+    external: true
