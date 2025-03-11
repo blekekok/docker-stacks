@@ -7,7 +7,7 @@ services:
         volumes:
             - ${ROOT_DIRECTORY}:/srv
             - ${DOCKER_DIRECTORY}/filebrowser/filebrowser.db:/database/filebrowser.db
-            - ${DOCKER_DIRECTORY}/settings.json:/config/settings.json
+            - ${DOCKER_DIRECTORY}/filebrowser/settings.json:/config/settings.json
         environment:
             - PUID=0
             - PGID=0
