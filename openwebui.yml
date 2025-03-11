@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  open-webui:
+    ports:
+      - 7000:8080
+    volumes:
+      - ${DOCKER_DIRECTORY}/open-webui:/app/backend/data
+    container_name: open-webui
+    restart: always
+    image: ghcr.io/open-webui/open-webui:latest
+volumes:
+  open-webui: {}
+networks:
+  dockge_default:
+    external: true
+  ollama_default:
+    external: true
+  searxng_searxng:
+    external: true
+  tika_default:
+    external: true
