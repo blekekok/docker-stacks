@@ -6,8 +6,8 @@ services:
         privileged: true
         volumes:
             - ${ROOT_DIRECTORY}:/srv
-            - ${DOCKER_DIRECTORY}/filebrowser/filebrowser.db:/database/filebrowser.db
-            - ${DOCKER_DIRECTORY}/filebrowser/settings.json:/config/settings.json
+            - ${DOCKER_DIRECTORY}/filebrowser/database:/database
+            - ${DOCKER_DIRECTORY}/filebrowser/config:/config
         environment:
             - PUID=0
             - PGID=0
