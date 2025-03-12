@@ -14,7 +14,7 @@ services:
       - ${DOCKER_DIRECTORY}/caddy/site:/srv
       - ${DOCKER_DIRECTORY}/caddy/data:/data
       - ${DOCKER_DIRECTORY}/caddy/config:/config
-    network:
+    networks:
       - proxy_network
 
   rathole:
@@ -25,7 +25,7 @@ services:
     volumes:
         - ${DOCKER_DIRECTORY}/rathole:/etc/rathole
     command: /etc/rathole/config.toml
-    network:
+    networks:
       - proxy_network
 
 networks:
