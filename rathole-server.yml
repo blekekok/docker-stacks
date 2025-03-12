@@ -5,10 +5,7 @@ services:
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
-    ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
+    network_mode: host
     volumes:
       - ${DOCKER_DIRECTORY}/caddy/conf:/etc/caddy
       - ${DOCKER_DIRECTORY}/caddy/site:/srv
