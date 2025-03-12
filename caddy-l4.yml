@@ -1,0 +1,13 @@
+services:
+  caddy:
+    image: custom-caddy:latest
+    container_name: caddy-l4
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    network_mode: host
+    volumes:
+      - ${DOCKER_DIRECTORY}/caddy/conf:/etc/caddy
+      - ${DOCKER_DIRECTORY}/caddy/site:/srv
+      - ${DOCKER_DIRECTORY}/caddy/data:/data
+      - ${DOCKER_DIRECTORY}/caddy/config:/config
