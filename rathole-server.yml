@@ -21,7 +21,6 @@ services:
     image: rapiz1/rathole
     container_name: rathole
     restart: unless-stopped
-    network_mode: host
     volumes:
         - ${DOCKER_DIRECTORY}/rathole:/etc/rathole
     command: /etc/rathole/config.toml
