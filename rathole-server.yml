@@ -1,29 +1,9 @@
 services:
-  caddy:
-    image: custom-caddy:latest
-    container_name: caddy
-    restart: unless-stopped
-    cap_add:
-      - NET_ADMIN
-    network_mode: host
-    volumes:
-      - ${DOCKER_DIRECTORY}/caddy/conf:/etc/caddy
-      - ${DOCKER_DIRECTORY}/caddy/site:/srv
-      - ${DOCKER_DIRECTORY}/caddy/data:/data
-      - ${DOCKER_DIRECTORY}/caddy/config:/config
-    networks:
-      - proxy_network
-
   rathole:
     image: rapiz1/rathole
     container_name: rathole
+    network_mode: host
     restart: unless-stopped
     volumes:
         - ${DOCKER_DIRECTORY}/rathole:/etc/rathole
     command: /etc/rathole/config.toml
-    networks:
-      - proxy_network
-
-networks:
-  proxy_network:
-    external: true
