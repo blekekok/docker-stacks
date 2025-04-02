@@ -6,6 +6,9 @@ services:
     ports:
       - "27015:27015/udp"
     volumes:
-      - /media/SSD-D1/docker-data/core-keeper/ckfile:/home/steam/core-keeper-dedicated
-      - /media/SSD-D1/docker-data/core-keeper/data:/home/steam/core-keeper-data
+      - ${DOCKER_DIRECTORY}/core-keeper/ckfile:/home/steam/core-keeper-dedicated
+      - ${DOCKER_DIRECTORY}/core-keeper/data:/home/steam/core-keeper-data
     stop_grace_period: 2m
+    environment:
+     - GAME_ID=${GAME_ID}
+     - SERVER_NAME=${SERVER_NAME}
