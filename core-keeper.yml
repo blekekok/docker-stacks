@@ -12,3 +12,4 @@ services:
     environment:
      - GAME_ID=${GAME_ID}
      - WORLD_NAME=${WORLD_NAME}
+     - ACTIVATE_CONTENT=${ACTIVATE_CONTENT}
