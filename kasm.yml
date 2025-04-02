@@ -1,0 +1,16 @@
+services:
+  kasm:
+    image: lscr.io/linuxserver/kasm:latest
+    container_name: kasm
+    privileged: true
+    security_opt:
+      - apparmor:rootlesskit #optional
+    environment:
+      - KASM_PORT=443
+    volumes:
+      - ${DOCKER_DIRECTORY}/kasm/data:/opt
+      - ${DOCKER_DIRECTORY}/kasm/profiles:/profiles
+    ports:
+      - 3001:3000
+      - 3444:443
+    restart: unless-stopped
