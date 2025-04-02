@@ -11,4 +11,4 @@ services:
     stop_grace_period: 2m
     environment:
      - GAME_ID=${GAME_ID}
-     - SERVER_NAME=${SERVER_NAME}
+     - WORLD_NAME=${WORLD_NAME}
