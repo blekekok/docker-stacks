@@ -1,6 +1,6 @@
 services:
   core-keeper:
-    container_name: core-keeper-dedicated
+    container_name: core-keeper
     image: escaping/core-keeper-dedicated
     restart: unless-stopped
     ports:
