@@ -20,12 +20,11 @@ services:
     deploy:
       resources:
         reservations:
-          # Enable support for NVIDIA GPUs.
-          # 
-          # Ref: https://docs.docker.com/compose/gpu-support/#enabling-gpu-access-to-service-containers
           devices:
-            - capabilities: [gpu]
-              device_ids: ["${NVIDIA_VISIBLE_DEVICES}"]
+            - driver: nvidia
+              count: all
+              capabilities:
+                - gpu
 
     # NETWORK:
     ## NOTE:  With this configuration, if we do not use the host network, then physical device input
