@@ -2,6 +2,7 @@ services:
   steam-headless:
     image: josh5/steam-headless:latest
     restart: unless-stopped
+    container_name: steam-headless
     shm_size: ${SHM_SIZE}
     ipc: host # Could also be set to 'shareable'
     ulimits:
