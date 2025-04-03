@@ -100,7 +100,7 @@ services:
       - ${DOCKER_DIRECTORY}/steam-headless/games/:/mnt/games/:rw
 
       # The Xorg socket.
-      - ${SHARED_SOCKETS_DIR}/.X11-unix/:/tmp/.X11-unix/:rw
+      - ${DOCKER_DIRECTORY}/steam-headless/sockets/.X11-unix/:/tmp/.X11-unix/:rw
 
       # Pulse audio socket.
-      - ${SHARED_SOCKETS_DIR}/pulse/:/tmp/pulse/:rw
+      - ${DOCKER_DIRECTORY}/steam-headless/sockets/pulse/:/tmp/pulse/:rw
