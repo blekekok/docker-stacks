@@ -1,6 +1,7 @@
 services:
   steam-headless:
     image: josh5/steam-headless:latest
+    privileged: true
     restart: unless-stopped
     container_name: steam-headless
     shm_size: ${SHM_SIZE}
