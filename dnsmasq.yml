@@ -1,0 +1,8 @@
+services:
+  dnsmasq:
+    image: andyshinn/dnsmasq:latest
+    container_name: dnsmasq
+    network_mode: host
+    volumes:
+      - ${DOCKER_CONTAINER}/dnsmasq:/etc
+    restart: unless-stopped
