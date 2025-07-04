@@ -3,6 +3,11 @@ services:
     image: andyshinn/dnsmasq:latest
     container_name: dnsmasq
     network_mode: host
+    command:
+      - "--no-daemon"
+      - "--conf-file=/etc/dnsmasq.conf"
+      - "--user=0"
+      - "--group=0"
     volumes:
       - ${DOCKER_DIRECTORY}/dnsmasq:/etc
     restart: unless-stopped
