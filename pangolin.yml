@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     volumes:
       - ${DOCKER_DIRECTORY}/pangolin/config:/app/config
-    heathcheck:
+    healthcheck:
       disable: true
     # healthcheck:
     #   test: ["CMD", "curl", "-f", "http://localhost:3001/api/v1/"]
