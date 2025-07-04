@@ -8,5 +8,5 @@ services:
       - "53:53/udp"
       - "8080:8080"
     volumes:
-      - ${DOCKER_DIRECTORY}/coredns/Corefile:/etc/coredns/Corefile
+      - ${DOCKER_DIRECTORY}/coredns:/etc/coredns
     restart: unless-stopped
