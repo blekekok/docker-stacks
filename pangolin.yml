@@ -1,8 +1,7 @@
-services:
-
 dns:
   - 192.168.11.11
 
+services:
   pangolin:
     image: fosrl/pangolin:1.6.2
     container_name: pangolin
