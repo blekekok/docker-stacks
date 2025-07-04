@@ -5,13 +5,13 @@ services:
     restart: unless-stopped
     volumes:
       - ${DOCKER_DIRECTORY}/pangolin/config:/app/config
+    ports:
+      - "3001:3001" 
     healthcheck:
-      disable: true
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:3001/api/v1/"]
-    #   interval: "3s"
-    #   timeout: "3s"
-    #   retries: 15
+      test: ["CMD", "curl", "-f", "http://localhost:3001/api/v1/"]
+      interval: "3s"
+      timeout: "3s"
+      retries: 15
 
   gerbil:
     image: fosrl/gerbil:1.0.0
