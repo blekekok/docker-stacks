@@ -45,6 +45,8 @@ services:
         condition: service_healthy
     command:
       - --configFile=/etc/traefik/traefik_config.yml
+    environment:
+      CLOUDFLARE_DNS_API_TOKEN: ${CLOUDFLARE_API_TOKEN}
     volumes:
       - ${DOCKER_DIRECTORY}/pangolin/config/traefik:/etc/traefik:ro # Volume to store the Traefik configuration
       - ${DOCKER_DIRECTORY}/pangolin/config/letsencrypt:/letsencrypt # Volume to store the Let's Encrypt certificates
