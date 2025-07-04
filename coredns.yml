@@ -1,0 +1,9 @@
+services:
+  coredns:
+    image: coredns/coredns:latest
+    container_name: coredns
+    network_mode: host
+    volumes:
+      - ${DOCKER_DIRECTORY}/coredns/:/
+    command: ["-conf", "/Corefile"]
+    restart: unless-stopped
