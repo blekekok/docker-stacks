@@ -1,0 +1,7 @@
+services:
+  localtonet:
+    image: localtonet/localtonet
+    container_name: localtonet
+    command: ["authtoken", "${TOKEN}"]
+    environment:
+      TOKEN: ${TOKEN}
