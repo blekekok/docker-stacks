@@ -14,8 +14,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - web
+      - local
 
 networks:
-  web:
+  local:
     external: true
