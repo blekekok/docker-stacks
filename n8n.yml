@@ -18,3 +18,9 @@ services:
       - "traefik.http.routers.docker-titan.rule=Host(`n8n.docker-titan.local`)"
       - "traefik.http.routers.docker-titan.entrypoints=web"
       - "traefik.http.services.docker-titan.loadbalancer.server.port=5678"
+    networks:
+      - web
+      
+networks:
+  web:
+    external: true
