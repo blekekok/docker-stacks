@@ -6,6 +6,7 @@ services:
     command:
       - "--providers.docker=true"
       - "--entryPoints.web.address=:80"
+      - "--providers.docker.exposedbydefault=false"
       - "--entryPoints.websecure.address=:443"
     ports:
       - "80:80"
