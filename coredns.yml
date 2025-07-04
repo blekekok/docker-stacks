@@ -2,8 +2,11 @@ services:
   coredns:
     image: coredns/coredns:latest
     container_name: coredns
-    network_mode: host
+    command: -conf /etc/coredns/Corefile -dns.port 53
+    ports:
+      - "53:53"
+      - "53:53/udp"
+      - "8080:8080"
     volumes:
-      - ${DOCKER_DIRECTORY}/coredns/:/
-    command: ["-conf", "/Corefile"]
+      - ${DOCKER_DIRECTORY}/coredns/Corefile:/etc/coredns/Corefile
     restart: unless-stopped
