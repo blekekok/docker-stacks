@@ -4,5 +4,5 @@ services:
     container_name: dnsmasq
     network_mode: host
     volumes:
-      - ${DOCKER_CONTAINER}/dnsmasq:/etc
+      - ${DOCKER_DIRECTORY}/dnsmasq:/etc
     restart: unless-stopped
