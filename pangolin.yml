@@ -30,6 +30,8 @@ services:
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
+    networks:
+      - home-net
     ports:
       - 51820:51820/udp
       - 443:443 # Port for traefik because of the network_mode
@@ -55,3 +57,5 @@ networks:
   default:
     driver: bridge
     name: pangolin
+  home-net:
+    external: true
