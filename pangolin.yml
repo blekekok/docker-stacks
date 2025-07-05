@@ -50,7 +50,23 @@ services:
     volumes:
       - ${DOCKER_DIRECTORY}/pangolin/config/traefik:/etc/traefik:ro # Volume to store the Traefik configuration
       - ${DOCKER_DIRECTORY}/pangolin/config/letsencrypt:/letsencrypt # Volume to store the Let's Encrypt certificates
+
+  coredns:
+    image: coredns/coredns:latest
+    container_name: pangolin-coredns
+    volumes:
+      - ${DOCKER_DIRECTORY}/pangolin/coredns:/etc/coredns
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    networks:
+      default:
+        ipv4_address: 172.28.0.10
+      
 networks:
   default:
     driver: bridge
     name: pangolin
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
