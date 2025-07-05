@@ -54,6 +54,8 @@ services:
     volumes:
       - ${DOCKER_DIRECTORY}/pangolin/config/traefik:/etc/traefik:ro # Volume to store the Traefik configuration
       - ${DOCKER_DIRECTORY}/pangolin/config/letsencrypt:/letsencrypt # Volume to store the Let's Encrypt certificates
+    networks:
+      - home-net
       
 networks:
   default:
