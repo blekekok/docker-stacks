@@ -63,7 +63,7 @@ services:
     image: coredns/coredns:latest
     container_name: pangolin-coredns
     volumes:
-      - ${DOCKER_DIRECTORY}/pangolin/coredns:/etc/coredns
+      - ${DOCKER_DIRECTORY}/pangolin/config/coredns:/etc/coredns
     ports:
       - "53:53/udp"
       - "53:53/tcp"
