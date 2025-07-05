@@ -7,8 +7,6 @@ services:
       - ${DOCKER_DIRECTORY}/pangolin/config:/app/config
     ports:
       - "3001:3001"
-    dns:
-      - 192.168.11.11
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3001/api/v1/"]
       interval: "3s"
@@ -36,8 +34,6 @@ services:
       - 51820:51820/udp
       - 443:443 # Port for traefik because of the network_mode
       - 80:80 # Port for traefik because of the network_mode
-    dns:
-      - 192.168.11.11
 
   traefik:
     image: traefik:v3.4.0
