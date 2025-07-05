@@ -15,7 +15,7 @@ services:
       - ${DOCKER_DIRECTORY}/n8n/files:/files
     labels:
       - "traefik.enable=true"
-      - `traefik.http.routers.n8n.rule=HeadersRegexp("X-Forwarded-Host","^n8n\.docker-titan\.local\.thebernas\.com$")`
+      - 'traefik.http.routers.n8n.rule=HeadersRegexp("X-Forwarded-Host","^n8n\.docker-titan\.local\.thebernas\.com$")'
       - "traefik.http.routers.docker-titan.entrypoints=web"
       - "traefik.http.services.docker-titan.loadbalancer.server.port=5678"
     networks:
