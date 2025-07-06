@@ -33,11 +33,7 @@ services:
       - NET_ADMIN
       - SYS_MODULE
     networks:
-      home-net:
-        aliases:
-          - gerbil
-    expose:
-      - "3003"
+      - home-net
     ports:
       - 51820:51820/udp
       - 443:443 # Port for traefik because of the network_mode
@@ -47,6 +43,7 @@ services:
     image: traefik:v3.4.0
     container_name: pangolin-traefik
     restart: unless-stopped
+    network_mode: service:gerbil
     depends_on:
       pangolin:
         condition: service_healthy
@@ -57,8 +54,6 @@ services:
     volumes:
       - ${DOCKER_DIRECTORY}/pangolin/config/traefik:/etc/traefik:ro # Volume to store the Traefik configuration
       - ${DOCKER_DIRECTORY}/pangolin/config/letsencrypt:/letsencrypt # Volume to store the Let's Encrypt certificates
-    networks:
-      - home-net
       
 networks:
   default:
