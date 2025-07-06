@@ -24,8 +24,6 @@ services:
     image: seafileltd/seafile-mc:11.0-latest
     container_name: seafile
     restart: unless-stopped
-    ports:
-#     - "443:443"  # If https is enabled, cancel the comment.
     volumes:
       - ${DOCKER_DIRECTORY}/seafile/seafile-storage:/shared   # Required, specifies the path to Seafile data persistent store.
       - ${STORAGE_DIRECTORY}/seafile/seafile-data:/shared/seafile/seafile-data
