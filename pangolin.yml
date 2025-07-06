@@ -33,7 +33,9 @@ services:
       - NET_ADMIN
       - SYS_MODULE
     networks:
-      - home-net
+      home-net:
+        aliases:
+          - gerbil
     ports:
       - 51820:51820/udp
       - 443:443 # Port for traefik because of the network_mode
