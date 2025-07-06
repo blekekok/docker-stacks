@@ -47,3 +47,4 @@ services:
 networks:
   seafile-net:
   home-net:
+    external: true
