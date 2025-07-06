@@ -36,6 +36,8 @@ services:
       home-net:
         aliases:
           - gerbil
+    expose:
+      - "3003"
     ports:
       - 51820:51820/udp
       - 443:443 # Port for traefik because of the network_mode
