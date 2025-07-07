@@ -9,7 +9,6 @@ services:
     ports:
       - 53:53/tcp
       - 53:53/udp
-      - 6050:3000/tcp
       - 6000:80/tcp
       - 6443:443/tcp
       - 6443:443/udp
@@ -17,3 +16,11 @@ services:
       - 853:853/udp
       - 784:784/udp
       - 8853:8853/udp
+    expose:
+      - "3000"
+    networks:
+      - home-net
+      
+networks:
+  home-net:
+    external: true
