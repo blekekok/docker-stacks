@@ -11,12 +11,16 @@ services:
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - stack.env
-    ports:
-      - 2283:3001
     depends_on:
       - redis
       - database
     restart: always
+    expose:
+      - "3001"
+    networks:
+      home-net:
+        aliases:
+          - immich
     healthcheck:
       disable: false
 
@@ -61,6 +65,10 @@ services:
       start_period: 5m
     command: ["postgres", "-c", "shared_preload_libraries=vectors.so", "-c", 'search_path="$$user", public, vectors', "-c", "logging_collector=on", "-c", "max_wal_size=2GB", "-c", "shared_buffers=512MB", "-c", "wal_compression=on"]
     restart: always
+
+networks:
+  home-net:
+    external: true
 
 volumes:
   model-cache:
