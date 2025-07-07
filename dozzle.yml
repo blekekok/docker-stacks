@@ -9,3 +9,11 @@ services:
       - 8080:8080
     environment:
       - DOZZLE_REMOTE_AGENT=${REMOTE_AGENT}
+    expose:
+      - "8080"
+    networks:
+      - home-net
+
+networks:
+  home-net:
+    external: true
