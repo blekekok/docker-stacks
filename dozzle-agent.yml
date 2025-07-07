@@ -6,6 +6,8 @@ services:
     command: agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 7007:7007
     expose:
       - "7007"
     networks:
