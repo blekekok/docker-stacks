@@ -9,6 +9,8 @@ services:
       - DOZZLE_MODE=swarm
     deploy:
       mode: global
+    ports:
+      - 8080:8080
     expose:
       - "8080"
     networks:
