@@ -1,0 +1,20 @@
+services:
+  npmplus:
+    container_name: npmplus
+    image: docker.io/zoeyvid/npmplus:latest # or ghcr.io/zoeyvid/npmplus:latest
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+    volumes:
+      - "${DOCKER_DIRECOTRY}/npmplus:/data"
+    environment:
+      - "TZ=Asia/Jakarta"
+      - "ACME_EMAIL=jtbernas@gmail.com"
+    networks:
+      - home-net
+      
+networks:
+  home-net:
+    external: true
