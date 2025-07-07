@@ -14,3 +14,4 @@ services:
 
 networks:
   home-net:
+    external: true
