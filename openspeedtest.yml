@@ -1,12 +1,16 @@
 services:
   openspeedtest:
-     image: openspeedtest/latest
-     container_name: openspeedtest
-     restart: unless-stopped
-     environment:
-       - ENABLE_LETSENCRYPT=True
-       - DOMAIN_NAME=${DOMAIN_NAME}
-       - USER_EMAIL=${USER_EMAIL}
-     ports:
-        - '5000:3000'
-        - '5443:3001'
+    image: openspeedtest/latest
+    container_name: openspeedtest
+    restart: unless-stopped
+    environment:
+      - ENABLE_LETSENCRYPT=True
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - USER_EMAIL=${USER_EMAIL}
+    expose:
+      - "3000"
+    networks:
+      - home-net
+
+networks:
+  home-net:
