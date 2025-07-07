@@ -1,6 +1,6 @@
 services:
   cloudflared:
     image: cloudflare/cloudflared:latest
-    container_name: cloudflared
+    container_name: ${CONTAINER_NAME-cloudflared}
     restart: unless-stopped
     command: tunnel run --protocol http2 --token ${CLOUDFLARE_API_TOKEN}
