@@ -1,16 +1,19 @@
 version: "3.3"
 services:
   open-webui:
-    ports:
-      - 7000:8080
-    volumes:
-      - ${DOCKER_DIRECTORY}/open-webui:/app/backend/data
+    image: ghcr.io/open-webui/open-webui:latest
     container_name: open-webui
     restart: always
-    image: ghcr.io/open-webui/open-webui:latest
-volumes:
-  open-webui: {}
+    volumes:
+      - ${DOCKER_DIRECTORY}/open-webui:/app/backend/data
+    expose:
+      - "8080"
+    networks:
+      - home-net
+
 networks:
+  home-net:
+    external: true
   dockge_default:
     external: true
   ollama_default:
