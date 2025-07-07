@@ -6,12 +6,17 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DOZZLE_REMOTE_AGENT=${REMOTE_AGENT}
+      - DOZZLE_MODE=swarm
+    deploy:
+      mode: global
     expose:
       - "8080"
     networks:
       - home-net
+      - dozzle
 
 networks:
   home-net:
     external: true
+  dozzle:
+    driver: overlay
