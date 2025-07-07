@@ -3,8 +3,6 @@ services:
     image: henrywhitaker3/speedtest-tracker
     container_name: speedtest-tracker
     restart: unless-stopped
-    ports:
-      - 8765:80
     volumes:
       - ${DOCKER_DIRECTORY}/speedtest:/config
     environment:
@@ -15,3 +13,11 @@ services:
       options:
         max-file: "10"
         max-size: "200k"
+    expose:
+      - "80"
+    networks:
+      - home-net
+      
+networks:
+  home-net:
+    external: true
