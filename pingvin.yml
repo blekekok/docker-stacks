@@ -3,8 +3,16 @@ services:
     image: stonith404/pingvin-share
     container_name: pingvin
     restart: unless-stopped
-    ports:
-      - 4000:3000
     volumes:
       - ${DOCKER_DIRECTORY}/pingvin:/opt/app/backend/data
       - ${DOCKER_DIRECTORY}/pingvin/images:/opt/app/frontend/public/img
+    expose:
+      - "3000"
+    networks:
+      home-net:
+        aliases:
+          - pingvin
+
+networks:
+  home-net:
+    external: true
