@@ -1,9 +1,17 @@
 services:
   cloudbeaver:
-      image: dbeaver/cloudbeaver:latest
-      container_name: cloudbeaver
-      restart: unless-stopped
-      ports:
-          - 8088:8978
-      volumes:
-          - ${DOCKER_DIRECTORY}/cloudbeaver/:/opt/cloudbeaver/workbench
+    image: dbeaver/cloudbeaver:latest
+    container_name: cloudbeaver
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    volumes:
+        - ${DOCKER_DIRECTORY}/cloudbeaver/:/opt/cloudbeaver/workbench
+    expose:
+      - "8978
+    networks:
+      - home-net
+
+networks:
+  home-net:
+    external: true
