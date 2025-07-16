@@ -5,8 +5,8 @@ services:
     restart: unless-stopped
     environment:
       - ENABLE_LETSENCRYPT=True
-      - DOMAIN_NAME=${DOMAIN_NAME}
-      - USER_EMAIL=${USER_EMAIL}
+      - DOMAIN_NAME=${DOMAIN}
+      - USER_EMAIL=${EMAIL}
     expose:
       - "3000"
     networks:
