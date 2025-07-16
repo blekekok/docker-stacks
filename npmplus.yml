@@ -11,7 +11,7 @@ services:
       - "${DOCKER_DIRECOTRY}/npmplus:/data"
     environment:
       - "TZ=Asia/Jakarta"
-      - "ACME_EMAIL=jtbernas@gmail.com"
+      - "ACME_EMAIL=${EMAIL}"
     networks:
       - home-net
       
