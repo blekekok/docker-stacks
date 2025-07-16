@@ -16,7 +16,7 @@ services:
         networks:
             home-net:
                 aliases:
-                    - "${SERVICE_ALIAS_NAME}"
+                    - "filebrowser-${NAMESPACE_NAME}"
 
 networks:
     home-net:
