@@ -4,12 +4,12 @@ services:
     image: docker.n8n.io/n8nio/n8n
     restart: always
     environment:
-      - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
+      - N8N_HOST=${DOMAIN}
       - N8N_PORT=5678
       - N8N_PROTOCOL=https
       - NODE_ENV=production
-      - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
-      - GENERIC_TIMEZONE=${TIMEZONE}
+      - WEBHOOK_URL=https://${DOMAIN}/
+      - GENERIC_TIMEZONE=Asia/Jakarta
     volumes:
       - ${DOCKER_DIRECTORY}/n8n/data:/home/node/.n8n
       - ${DOCKER_DIRECTORY}/n8n/files:/files
