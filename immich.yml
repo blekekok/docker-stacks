@@ -35,6 +35,8 @@ services:
     volumes:
       - ${DOCKER_DIRECTORY}/immich/ml/cache:/cache
     restart: always
+    env_file:
+      - .env
     healthcheck:
       disable: false
     networks:
