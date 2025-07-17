@@ -13,6 +13,8 @@ services:
       - redis
       - database
     restart: always
+    env_file:
+      - .env
     expose:
       - "3001"
     networks:
