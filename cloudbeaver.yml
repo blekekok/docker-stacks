@@ -6,7 +6,7 @@ services:
     tty: true
     stdin_open: true
     volumes:
-        - ${DOCKER_DIRECTORY}/cloudbeaver/:/opt/cloudbeaver/workbench
+        - ${DOCKER_DIRECTORY}/cloudbeaver:/opt/cloudbeaver/workbench
     expose:
       - "8978"
     networks:
