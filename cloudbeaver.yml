@@ -6,7 +6,10 @@ services:
     tty: true
     stdin_open: true
     volumes:
-        - ${DOCKER_DIRECTORY}/cloudbeaver:/opt/cloudbeaver
+        - ${DOCKER_DIRECTORY}/cloudbeaver/workspaces:/opt/cloudbeaver/workspace
+        - ${DOCKER_DIRECTORY}/cloudbeaver/certs:/opt/cloudbeaver/conf/certificates/
+        - ${DOCKER_DIRECTORY}/cloudbeaver/cacerts:/opt/cloudbeaver/workspace/.data/custom/
+        - ${DOCKER_DIRECTORY}/cloudbeaver/api_tokens:/opt/cloudbeaver/conf/keys/
     expose:
       - "8978"
     networks:
