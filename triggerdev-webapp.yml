@@ -4,8 +4,6 @@ services:
     restart: unless-stopped
     env_file:
       - .env
-    environment:
-      <<: *webapp-env
     expose:
       - 3030
     depends_on:
