@@ -1,0 +1,50 @@
+services:
+  triggerdev-webapp:
+    image: ghcr.io/triggerdotdev/trigger.dev:v4-beta
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      <<: *webapp-env
+    expose:
+      - 3030
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - home-net
+
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_DIRECTORY}/triggerdev/postgres:/var/lib/postgresql/data
+    env_file:
+      - .env
+    networks:
+      - home-net
+    command:
+      - -c
+      - wal_level=logical
+
+  redis:
+    image: redis:7
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_DIRECTORY}/triggerdev/redis:/data
+    networks:
+      - home-net
+
+  electric:
+    image: electricsql/electric:latest
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: $DATABASE_URL
+    networks:
+      - home-net
+    depends_on:
+      - postgres
+
+  networks:
+    home-net:
+      external: true
