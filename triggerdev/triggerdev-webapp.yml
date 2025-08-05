@@ -131,7 +131,7 @@ services:
       CLICKHOUSE_ADMIN_PASSWORD: ${CLICKHOUSE_PASSWORD:-password}
     volumes:
       - ${DOCKER_DIRECTORY}/triggerdev-webapp/clickhouse:/bitnami/clickhouse
-      - ./clickhouse/override.xml:/bitnami/clickhouse/etc/config.d/override.xml:ro
+      - ${DOCKER_DIRECTORY}/triggerdev-webapp/config/clickhouse/override.xml:/bitnami/clickhouse/etc/config.d/override.xml:ro
     networks:
       - webapp
     healthcheck:
@@ -148,7 +148,7 @@ services:
       - webapp
     volumes:
       # registry-user:very-secure-indeed
-      - ./registry/auth.htpasswd:/auth/htpasswd:ro
+      - ${DOCKER_DIRECTORY}/triggerdev-webapp/config/registry/auth.htpasswd:/auth/htpasswd:ro
     environment:
       REGISTRY_AUTH: htpasswd
       REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
