@@ -11,6 +11,7 @@ services:
     networks:
       - webapp
       - supervisor
+      - home-net
     volumes:
       - ${DOCKER_DIRECTORY}/triggerdev-webapp/shared:/home/node/shared
     # Only needed for bootstrap
@@ -179,6 +180,8 @@ services:
       start_period: 10s
 
 networks:
+  home-net:
+    external: true
   docker-proxy:
     name: docker-proxy
   supervisor:
