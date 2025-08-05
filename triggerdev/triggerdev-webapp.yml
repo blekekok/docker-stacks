@@ -1,5 +1,5 @@
 services:
-  webapp:
+  trigger-webapp:
     image: ghcr.io/triggerdotdev/trigger.dev:v4-beta
     restart: unless-stopped
     expose:
