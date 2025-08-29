@@ -5,6 +5,6 @@ services:
     ports:
       - 7777:7777
     volumes:
-      - ${DOCKER_DIRECTORY}/terraria:/opt/terraria
+      - ${DOCKER_DIRECTORY}/terraria/:/opt/terraria/
     environment:
       WORLD: ${WORLD_NAME}
