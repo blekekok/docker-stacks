@@ -7,4 +7,4 @@ services:
     volumes:
       - ${DOCKER_DIRECTORY}/terraria:/opt/terraria
     environment:
-      WORLD: "myworld"
+      WORLD: ${WORLD_NAME}
