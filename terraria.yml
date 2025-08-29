@@ -6,5 +6,5 @@ services:
       - 7777:7777
     volumes:
       - ${DOCKER_DIRECTORY}/terraria:/opt/terraria/config
-    environment:
-      WORLD: ${WORLD_NAME}
+    env_file:
+      - .env
