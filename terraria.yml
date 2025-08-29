@@ -1,0 +1,10 @@
+services:
+  terraria:
+    image: passivelemon/terraria-docker:terraria-latest
+    container_name: terraria
+    ports:
+      - 7777:7777
+    volumes:
+      - ${DOCKER_DIRECTORY}/terraria:/opt/terraria
+    environment:
+      WORLD: "myworld"
