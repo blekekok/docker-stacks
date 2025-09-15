@@ -4,7 +4,7 @@ services:
       container_name: chartdb
       restart: unless-stopped
       environment:
-        - OPENAI_API_KEY=""
+        - OPENAI_API_KEY=${OPENAI_API_KEY}
       expose:
         - 80
       networks:
