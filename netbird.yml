@@ -1,5 +1,8 @@
 services:
   netbird:
+    image: netbirdio/netbird:latest
+    network_mode: host
+    restart: unless-stopped
     cap_add:
       - NET_ADMIN
     environment:
@@ -7,4 +10,3 @@ services:
       - NB_MANAGEMENT_URL=${MANAGEMENT_URL}
     volumes:
       - ${DOCKER_DIRECTORY}/netbird:/var/lib/netbird
-    image: netbirdio/netbird:latest
