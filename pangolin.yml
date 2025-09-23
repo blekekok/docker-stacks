@@ -6,7 +6,9 @@ services:
     volumes:
       - ${DOCKER_DIRECTORY}/pangolin/config:/app/config
     ports:
+      - "3000:3000"
       - "3001:3001"
+      - "3002:3002"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3001/api/v1/"]
       interval: "3s"
