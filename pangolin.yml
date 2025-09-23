@@ -45,7 +45,7 @@ services:
         condition: service_healthy
     command:
       - --configFile=/etc/traefik/traefik_config.yml
-    environment:
+    #environment:
       # CF_DNS_API_TOKEN: ${CLOUDFLARE_API_TOKEN}
     volumes:
       - ${DOCKER_DIRECTORY}/pangolin/config/traefik:/etc/traefik:ro # Volume to store the Traefik configuration
