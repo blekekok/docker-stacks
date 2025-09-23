@@ -6,9 +6,5 @@ services:
       - NB_SETUP_KEY=${SETUP_KEY}
       - NB_MANAGEMENT_URL=${MANAGEMENT_URL}
     volumes:
-      - netbird-client:/var/lib/netbird
+      - ${DOCKER_DIRECTORY}/netbird:/var/lib/netbird
     image: netbirdio/netbird:latest
-volumes:
-  netbird-client:
-    external: true
-    name: netbird-client
