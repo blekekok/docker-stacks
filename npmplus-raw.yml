@@ -3,9 +3,7 @@ services:
     container_name: npmplus
     image: docker.io/zoeyvid/npmplus:latest # or ghcr.io/zoeyvid/npmplus:latest
     restart: always
-    ports:
-      - "81:81"
-      - "1000-65535:1000-65535"
+    network_mode: host
     volumes:
       - "${DOCKER_DIRECTORY}/npmplus:/data"
     environment:
