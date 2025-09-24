@@ -9,7 +9,5 @@ services:
     environment:
       - "TZ=Asia/Jakarta"
       - "ACME_EMAIL=${EMAIL}"
-      - "HTTP_PORT=8080"       # Change from default 80
-      - "HTTPS_PORT=8443"      # Change from default 443
-      - "NGINX_PORT_80=8080"    # Change HTTP to port 8080
-      - "NGINX_PORT_443=8443"   # Change HTTPS to port 8443
+      - "NGINX_PORT_80=8980"    # Change HTTP to port 8080
+      - "NGINX_PORT_443=8943"   # Change HTTPS to port 8443
