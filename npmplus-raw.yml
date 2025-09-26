@@ -1,6 +1,6 @@
 services:
   npmplus-raw:
-    container_name: npmplus
+    container_name: npmplus-raw-${NAMESPACE}
     image: docker.io/zoeyvid/npmplus:latest # or ghcr.io/zoeyvid/npmplus:latest
     restart: always
     network_mode: host
