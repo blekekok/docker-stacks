@@ -1,5 +1,5 @@
 services:
-  npmplus:
+  npmplus-raw:
     container_name: npmplus
     image: docker.io/zoeyvid/npmplus:latest # or ghcr.io/zoeyvid/npmplus:latest
     restart: always
@@ -11,3 +11,11 @@ services:
       - "ACME_EMAIL=${EMAIL}"
       - "HTTP_PORT=8998"       # Change from default 80
       - "HTTPS_PORT=8999"      # Change from default 443
+    networks:
+      home-net:
+        aliases:
+          - npmplus-raw-${NAMESPACE}
+
+networks:
+  home-net:
+    external: true
