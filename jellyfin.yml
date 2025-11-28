@@ -3,7 +3,7 @@ services:
     image: jellyfin/jellyfin
     container_name: jellyfin
     restart: 'unless-stopped'
-    user: uid:gid
+    # user: uid:gid
     expose:
       - 8096
       - 7359
