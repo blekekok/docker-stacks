@@ -24,6 +24,6 @@ services:
     networks:
       - home-net
         
-  networks:
-    home-net:
-      external: true
+networks:
+  home-net:
+    external: true
