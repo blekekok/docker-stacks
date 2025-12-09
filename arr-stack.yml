@@ -1,0 +1,94 @@
+services:      
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Jakarta
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - ${DOCKER_DIRECTORY}/qbittorrent/config:/config
+      - ${STORAGE_DIRECTORY}/downloads:/downloads
+    expose:
+      - 8080
+      - 6881
+    networks:
+      - home-net
+  
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Jakarta
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOCKER_DIRECTORY}/prowlarr/config:/config
+    expose:
+      - 9696
+    networks:
+      - home-net
+  
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Jakarta
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOCKER_DIRECTORY}/sonarr/config:/config
+      - ${STORAGE_DIRECTORY}/downloads:/downloads
+      - ${STORAGE_DIRECTORY}/jellyfin/media/Shows:/Shows
+    expose:
+      - 8989
+    networks:
+      - home-net
+  
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Australia/Sydney
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOCKER_DIRECTORY}/radarr/config:/config
+      - ${STORAGE_DIRECTORY}/downloads:/downloads
+      - ${STORAGE_DIRECTORY}/jellyfin/media/Movies:/Movies
+    expose:
+      - 7878
+    networks:
+      - home-net
+  
+  lidarr:
+    container_name: lidarr
+    image: lscr.io/linuxserver/lidarr:latest
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOCKER_DIRECTORY}/lidarr/config:/config
+      - ${DOCKER_DIRECTORY}/lidarr/data:/data
+      - ${STORAGE_DIRECTORY}/downloads:/downloads
+      - ${STORAGE_DIRECTORY}/jellyfin/media/Music:/Music
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Australia/Sydney
+    expose:
+      - 8686
+    networks:
+      - home-net
+
+networks:
+  home-net:
+    external: true
