@@ -59,7 +59,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Australia/Sydney
+      - TZ=Asia/Jakarta
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${DOCKER_DIRECTORY}/radarr/config:/config
@@ -83,7 +83,26 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Australia/Sydney
+      - TZ=Asia/Jakarta
+    expose:
+      - 8686
+    networks:
+      - home-net
+
+  readarr:
+    container_name: readarr
+    image: lscr.io/linuxserver/readarr:latest
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOCKER_DIRECTORY}/readarr/config:/config
+      - ${DOCKER_DIRECTORY}/readarr/data:/data
+      - ${STORAGE_DIRECTORY}/downloads:/downloads
+      - ${STORAGE_DIRECTORY}/media/Books:/Books
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Jakarta
     expose:
       - 8686
     networks:
