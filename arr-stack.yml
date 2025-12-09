@@ -91,7 +91,7 @@ services:
 
   readarr:
     container_name: readarr
-    image: lscr.io/linuxserver/readarr:latest
+    image: lscr.io/linuxserver/readarr
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
