@@ -69,44 +69,6 @@ services:
       - 7878
     networks:
       - home-net
-  
-  lidarr:
-    container_name: lidarr
-    image: lscr.io/linuxserver/lidarr:latest
-    restart: unless-stopped
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ${DOCKER_DIRECTORY}/lidarr/config:/config
-      - ${DOCKER_DIRECTORY}/lidarr/data:/data
-      - ${STORAGE_DIRECTORY}/downloads:/downloads
-      - ${STORAGE_DIRECTORY}/jellyfin/media/Music:/Music
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Jakarta
-    expose:
-      - 8686
-    networks:
-      - home-net
-
-  readarr:
-    container_name: readarr
-    image: lscr.io/linuxserver/readarr
-    restart: unless-stopped
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ${DOCKER_DIRECTORY}/readarr/config:/config
-      - ${DOCKER_DIRECTORY}/readarr/data:/data
-      - ${STORAGE_DIRECTORY}/downloads:/downloads
-      - ${STORAGE_DIRECTORY}/media/Books:/Books
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Jakarta
-    expose:
-      - 8686
-    networks:
-      - home-net
 
 networks:
   home-net:
