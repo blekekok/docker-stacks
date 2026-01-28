@@ -2,6 +2,8 @@ services:
   stremio:
     image: stremio/server:latest
     container_name: stremio
+    volumes:
+      - ${DOCKER_DIRECTORY}/stremio:/root/.stremio-server
     expose:
       - 11470
       - 12470
