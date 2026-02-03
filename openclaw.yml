@@ -45,7 +45,7 @@ services:
     stdin_open: true
     tty: true
     init: true
-    entrypoint: ["node", "dist/index.js"]
+    entrypoint: ["sh", "-lc", "tail -f /dev/null"]
 
 networks:
   home-net:
