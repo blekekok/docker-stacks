@@ -9,8 +9,8 @@ services:
       CLAUDE_WEB_SESSION_KEY: ${CLAUDE_WEB_SESSION_KEY}
       CLAUDE_WEB_COOKIE: ${CLAUDE_WEB_COOKIE}
     volumes:
-      - ${DOCKER_DIRECTORY}/config:/home/node/.openclaw
-      - ${DOCKER_DIRECTORY}/workspace:/home/node/.openclaw/workspace
+      - ${DOCKER_DIRECTORY}/openclaw/config:/home/node/.openclaw
+      - ${DOCKER_DIRECTORY}/openclaw/workspace:/home/node/.openclaw/workspace
     networks:
       - home-net
     expose:
@@ -40,8 +40,8 @@ services:
       CLAUDE_WEB_SESSION_KEY: ${CLAUDE_WEB_SESSION_KEY}
       CLAUDE_WEB_COOKIE: ${CLAUDE_WEB_COOKIE}
     volumes:
-      - ${DOCKER_DIRECTORY}/config:/home/node/.openclaw
-      - ${DOCKER_DIRECTORY}/workspace:/home/node/.openclaw/workspace
+      - ${DOCKER_DIRECTORY}/openclaw/config:/home/node/.openclaw
+      - ${DOCKER_DIRECTORY}/openclaw/workspace:/home/node/.openclaw/workspace
     stdin_open: true
     tty: true
     init: true
