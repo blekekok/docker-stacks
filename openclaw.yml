@@ -16,6 +16,7 @@ services:
     expose:
       - 18789
       - 18790
+      - 18793
     init: true
     restart: unless-stopped
     command:
