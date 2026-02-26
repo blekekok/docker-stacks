@@ -9,8 +9,6 @@ services:
       - TS_AUTH_ONCE=true
     volumes:
       - ${DOCKER_DIRECTORY}/tailscale/state:/var/lib/tailscale
-    devices:
-      - /dev/net/tun:/dev/net/tun
     cap_add:
       - net_admin
     restart: unless-stopped
