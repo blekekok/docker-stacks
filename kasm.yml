@@ -4,11 +4,11 @@ services:
     container_name: kasm
     privileged: true
     environment:
-      - KASM_PORT=443
+      - KASM_PORT=3444
     volumes:
       - ${DOCKER_DIRECTORY}/kasm/data:/opt
       - ${DOCKER_DIRECTORY}/kasm/profiles:/profiles
     ports:
       - 3001:3000
-      - 3444:443
+      - 3444:3444
     restart: unless-stopped
