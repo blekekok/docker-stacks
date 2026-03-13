@@ -1,0 +1,30 @@
+services:
+  zrok:
+    image: openziti/zrok:latest
+    container_name: zrok
+    restart: unless-stopped
+
+    environment:
+      ZROK_DNS_ZONE: ${DOMAIN_NAME}
+      ZROK_USER_EMAIL: ${ZROK_EMAIL}
+      ZROK_USER_PWD: ${ZROK_PASS}
+      ZITI_PWD: ${ZITI_PASS}
+      ZROK_ADMIN_TOKEN: ${ZROK_TOKEN}
+
+      ZROK_INSECURE_INTERFACE: 0.0.0.0
+
+      ZROK_CTRL_PORT: 18080
+      ZROK_FRONTEND_PORT: 8080
+      ZROK_OAUTH_PORT: 8081
+      ZITI_CTRL_ADVERTISED_PORT: 80
+      ZITI_ROUTER_PORT: 3022
+
+    expose:
+      - "8080"
+
+    networks:
+      - home-net
+
+networks:
+  home-net:
+    external: true
