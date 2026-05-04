@@ -1,0 +1,222 @@
+name: frappe_docker
+services:
+  erpnext-backend:
+    depends_on:
+      erpnext-configurator:
+        condition: service_completed_successfully
+        required: true
+    image: frappe/erpnext:v16.16.0
+    networks:
+      default: null
+    platform: linux/amd64
+    pull_policy: always
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ${DOCKER_DIRECTORY}/frappe/sites
+        target: /home/frappe/frappe-bench/sites
+        bind:
+          create_host_path: true
+  erpnext-configurator:
+    command:
+      - |
+        ls -1 apps > sites/apps.txt; bench set-config -g db_host $$DB_HOST; bench set-config -gp db_port $$DB_PORT; bench set-config -g redis_cache "redis://$$REDIS_CACHE"; bench set-config -g redis_queue "redis://$$REDIS_QUEUE"; bench set-config -g redis_socketio "redis://$$REDIS_QUEUE"; bench set-config -gp socketio_port $$SOCKETIO_PORT; bench set-config -g chromium_path /usr/bin/chromium-headless-shell;
+    depends_on:
+      erpnext-db:
+        condition: service_healthy
+        required: true
+      erpnext-redis-cache:
+        condition: service_started
+        required: true
+      erpnext-redis-queue:
+        condition: service_started
+        required: true
+    entrypoint:
+      - bash
+      - -c
+    environment:
+      DB_HOST: erpnext-db
+      DB_PORT: "3306"
+      REDIS_CACHE: erpnext-redis-cache:6379
+      REDIS_QUEUE: erpnext-redis-queue:6379
+      SOCKETIO_PORT: "9000"
+    image: frappe/erpnext:v16.16.0
+    networks:
+      default: null
+    platform: linux/amd64
+    pull_policy: always
+    restart: on-failure
+    volumes:
+      - type: bind
+        source: ${DOCKER_DIRECTORY}/frappe/sites
+        target: /home/frappe/frappe-bench/sites
+        bind:
+          create_host_path: true
+  erpnext-db:
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+    environment:
+      MARIADB_AUTO_UPGRADE: "1"
+      MYSQL_ROOT_PASSWORD: "123"
+    healthcheck:
+      test:
+        - CMD
+        - healthcheck.sh
+        - --connect
+        - --innodb_initialized
+      timeout: 5s
+      interval: 5s
+      retries: 5
+      start_period: 5s
+    image: mariadb:11.8
+    networks:
+      default: null
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ${DOCKER_DIRECTORY}/frappe/db-data
+        target: /var/lib/mysql
+        bind:
+          create_host_path: true
+  erpnext-frontend:
+    command:
+      - nginx-entrypoint.sh
+    depends_on:
+      erpnext-backend:
+        condition: service_started
+        required: true
+      erpnext-websocket:
+        condition: service_started
+        required: true
+    environment:
+      BACKEND: erpnext-backend:8000
+      CLIENT_MAX_BODY_SIZE: 50m
+      FRAPPE_SITE_NAME_HEADER: $$host
+      PROXY_READ_TIMEOUT: "120"
+      SOCKETIO: erpnext-websocket:9000
+      UPSTREAM_REAL_IP_ADDRESS: 127.0.0.1
+      UPSTREAM_REAL_IP_HEADER: X-Forwarded-For
+      UPSTREAM_REAL_IP_RECURSIVE: "off"
+    image: frappe/erpnext:v16.16.0
+    networks:
+      default: null
+      home-net:
+        aliases:
+          - erpnext-frontend
+    platform: linux/amd64
+    pull_policy: always
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ${DOCKER_DIRECTORY}/frappe/sites
+        target: /home/frappe/frappe-bench/sites
+        bind:
+          create_host_path: true
+  erpnext-queue-long:
+    command:
+      - bench
+      - worker
+      - --queue
+      - long,default,short
+    depends_on:
+      erpnext-configurator:
+        condition: service_completed_successfully
+        required: true
+    image: frappe/erpnext:v16.16.0
+    networks:
+      default: null
+    platform: linux/amd64
+    pull_policy: always
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ${DOCKER_DIRECTORY}/frappe/sites
+        target: /home/frappe/frappe-bench/sites
+        bind:
+          create_host_path: true
+  erpnext-queue-short:
+    command:
+      - bench
+      - worker
+      - --queue
+      - short,default
+    depends_on:
+      erpnext-configurator:
+        condition: service_completed_successfully
+        required: true
+    image: frappe/erpnext:v16.16.0
+    networks:
+      default: null
+    platform: linux/amd64
+    pull_policy: always
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ${DOCKER_DIRECTORY}/frappe/sites
+        target: /home/frappe/frappe-bench/sites
+        bind:
+          create_host_path: true
+  erpnext-redis-cache:
+    image: redis:8.6-alpine
+    networks:
+      default: null
+    restart: unless-stopped
+  erpnext-redis-queue:
+    image: redis:8.6-alpine
+    networks:
+      default: null
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ${DOCKER_DIRECTORY}/frappe/redis-queue-data
+        target: /data
+        bind:
+          create_host_path: true
+  erpnext-scheduler:
+    command:
+      - bench
+      - schedule
+    depends_on:
+      erpnext-configurator:
+        condition: service_completed_successfully
+        required: true
+    image: frappe/erpnext:v16.16.0
+    networks:
+      default: null
+    platform: linux/amd64
+    pull_policy: always
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ${DOCKER_DIRECTORY}/frappe/sites
+        target: /home/frappe/frappe-bench/sites
+        bind:
+          create_host_path: true
+  erpnext-websocket:
+    command:
+      - node
+      - /home/frappe/frappe-bench/apps/frappe/socketio.js
+    depends_on:
+      erpnext-configurator:
+        condition: service_completed_successfully
+        required: true
+    image: frappe/erpnext:v16.16.0
+    networks:
+      default: null
+    platform: linux/amd64
+    pull_policy: always
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ${DOCKER_DIRECTORY}/frappe/sites
+        target: /home/frappe/frappe-bench/sites
+        bind:
+          create_host_path: true
+networks:
+  default:
+    name: frappe_docker_default
+  home-net:
+    name: home-net
+    external: true
