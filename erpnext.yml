@@ -91,7 +91,7 @@ services:
     environment:
       BACKEND: erpnext-backend:8000
       CLIENT_MAX_BODY_SIZE: 50m
-      FRAPPE_SITE_NAME_HEADER: $$host
+      FRAPPE_SITE_NAME_HEADER: ${FRAPPE_SITE_NAME_HEADER:-$$host}
       PROXY_READ_TIMEOUT: "120"
       SOCKETIO: erpnext-websocket:9000
       UPSTREAM_REAL_IP_ADDRESS: 127.0.0.1
