@@ -9,7 +9,6 @@ services:
     networks:
       default: null
     platform: linux/amd64
-    pull_policy: always
     restart: unless-stopped
     volumes:
       - type: bind
@@ -44,7 +43,6 @@ services:
     networks:
       default: null
     platform: linux/amd64
-    pull_policy: always
     restart: on-failure
     volumes:
       - type: bind
@@ -106,7 +104,6 @@ services:
         aliases:
           - erpnext-frontend
     platform: linux/amd64
-    pull_policy: always
     restart: unless-stopped
     volumes:
       - type: bind
@@ -128,7 +125,6 @@ services:
     networks:
       default: null
     platform: linux/amd64
-    pull_policy: always
     restart: unless-stopped
     volumes:
       - type: bind
@@ -150,7 +146,6 @@ services:
     networks:
       default: null
     platform: linux/amd64
-    pull_policy: always
     restart: unless-stopped
     volumes:
       - type: bind
@@ -186,7 +181,6 @@ services:
     networks:
       default: null
     platform: linux/amd64
-    pull_policy: always
     restart: unless-stopped
     volumes:
       - type: bind
@@ -206,7 +200,6 @@ services:
     networks:
       default: null
     platform: linux/amd64
-    pull_policy: always
     restart: unless-stopped
     volumes:
       - type: bind
