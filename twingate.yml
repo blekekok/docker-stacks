@@ -4,20 +4,26 @@ services:
     container_name: twingate-1
     restart: unless-stopped
     privileged: true
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
     environment:
-        - TWINGATE_NETWORK=${TWINGATE_NETWORK}
-        - TWINGATE_ACCESS_TOKEN=${TWINGATE_PRIMARY_ACCESS_TOKEN}
-        - TWINGATE_REFRESH_TOKEN=${TWINGATE_PRIMARY_REFRESH_TOKEN}
-        - TWINGATE_LABEL_HOSTNAME=`hostname`
-        - TWINGATE_LABEL_DEPLOYED_BY=docker
+      - TWINGATE_NETWORK=${TWINGATE_NETWORK}
+      - TWINGATE_ACCESS_TOKEN=${TWINGATE_PRIMARY_ACCESS_TOKEN}
+      - TWINGATE_REFRESH_TOKEN=${TWINGATE_PRIMARY_REFRESH_TOKEN}
+      - TWINGATE_LABEL_HOSTNAME=`hostname`
+      - TWINGATE_LABEL_DEPLOYED_BY=docker
   connector-2:
     image: twingate/connector:1
     container_name: twingate-2
     restart: unless-stopped
     privileged: true
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
     environment:
-        - TWINGATE_NETWORK=${TWINGATE_NETWORK}
-        - TWINGATE_ACCESS_TOKEN=${TWINGATE_SECONDARY_ACCESS_TOKEN}
-        - TWINGATE_REFRESH_TOKEN=${TWINGATE_SECONDARY_REFRESH_TOKEN}
-        - TWINGATE_LABEL_HOSTNAME=`hostname`
-        - TWINGATE_LABEL_DEPLOYED_BY=docker
+      - TWINGATE_NETWORK=${TWINGATE_NETWORK}
+      - TWINGATE_ACCESS_TOKEN=${TWINGATE_SECONDARY_ACCESS_TOKEN}
+      - TWINGATE_REFRESH_TOKEN=${TWINGATE_SECONDARY_REFRESH_TOKEN}
+      - TWINGATE_LABEL_HOSTNAME=`hostname`
+      - TWINGATE_LABEL_DEPLOYED_BY=docker
