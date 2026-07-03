@@ -8,5 +8,6 @@ services:
     environment:
       - NB_SETUP_KEY=${SETUP_KEY}
       - NB_MANAGEMENT_URL=${MANAGEMENT_URL}
+      - NB_DISABLE_DNS=true
     volumes:
       - ${DOCKER_DIRECTORY}/netbird:/var/lib/netbird
