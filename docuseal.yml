@@ -13,7 +13,7 @@ services:
   postgres:
     image: postgres:18
     volumes:
-      - {DOCKER_DIRECTORY}/docuseal/postgres:/var/lib/postgresql/18/docker
+      - ${DOCKER_DIRECTORY}/docuseal/postgres:/var/lib/postgresql/18/docker
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
