@@ -9,6 +9,8 @@ services:
     environment:
       - FORCE_SSL=${HOST}
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
+    networks:
+      - home-net
 
   postgres:
     image: postgres:18
@@ -23,3 +25,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+networks:
+  home-net:
+    external: true
