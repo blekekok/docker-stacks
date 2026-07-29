@@ -10,6 +10,7 @@ services:
       - FORCE_SSL=${HOST}
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
     networks:
+      - docuseal-net
       - home-net
 
   postgres:
@@ -21,11 +22,17 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: docuseal
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d docuseal"]
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      - docuseal-net
 
 networks:
+  docuseal-net:
+    driver: bridge
+    internal: true
+
   home-net:
     external: true
